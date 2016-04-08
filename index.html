@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Fun with Flags</title>
+    <style>
+        h1 {
+            font-family: "Trebuchet MS";
+            font-size: 2em;
+            padding: 0;
+            margin: 0;
+        }
+
+        .flag {
+            font-size: 8em;
+            margin-top: 50px;
+            line-height: 1em;
+        }
+
+        .answer {
+            font-size:2em;
+            font-family: monospace;
+            letter-spacing: .3em;
+            width: 100%;
+            background-color: transparent;
+            border: 0;
+            outline: none;
+            color: transparent;
+            text-shadow: 0 0 0 #000;
+        }
+
+        .results {
+            margin-top: 30px;
+            font-size:1.4em;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fun with Flags</h1>
+    <div id="app"></div>
+    <script src="app.js"></script>
+    <script src="flags.js"></script>
+    <script>
+        window.initFunWithFlags(window.FLAGS, 3, document.getElementById('app'));
+    </script>
+</body>
+</html>
