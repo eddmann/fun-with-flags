@@ -1,55 +1,37 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import styled from "styled-components";
-
-const isBackspace = c => c === 8;
-const isEnter = c => c === 13;
-const isUpperCase = c => !!c.match(/^[A-Z]$/);
 
 const toPlaceholder = (value, answer) =>
   [...value].reduce((placeholder, char) => {
     return placeholder.replace("_", char);
   }, answer.replace(/[^\s]/g, "_"));
 
-const isCorrect = (value, answer) =>
-  answer.replace(/[\s]/g, "").toUpperCase() === value;
+const removeSpaces = value => value.replace(/\s+/g, "");
 
-const updateValue = (value, keyCode) => {
-  if (isBackspace(keyCode)) {
-    return value.substr(0, value.length - 1);
-  }
-
-  const char = String.fromCharCode(keyCode).toUpperCase();
-
-  return isUpperCase(char) ? `${value}${char}` : value;
-};
+const checkValue = (value, answer) =>
+  removeSpaces(answer).toUpperCase() === removeSpaces(value).toUpperCase();
 
 const AnswerBox = ({ answer, onCorrect, onIncorrect, ...props }) => {
   const [value, setValue] = useState("");
-  const inputRef = useRef();
 
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
+  const handleChange = event => {
+    const {
+      target: { value }
+    } = event;
 
-  useEffect(
-    () => {
-      setValue("");
-    },
-    [answer]
-  );
+    const valueWithoutSpaces = removeSpaces(value);
 
-  const onKeyDown = ({ keyCode }) => {
-    if (isEnter(keyCode)) {
-      isCorrect(value, answer) ? onCorrect() : onIncorrect();
-      setValue("");
-      return;
+    if (valueWithoutSpaces.length <= answer.length) {
+      setValue(valueWithoutSpaces);
     }
+  };
 
-    const newValue = updateValue(value, keyCode);
+  const handleSubmit = event => {
+    event.preventDefault();
 
-    if (newValue.length <= answer.length) {
-      setValue(newValue);
-    }
+    checkValue(value, answer) ? onCorrect() : onIncorrect();
+    setValue("");
+    return;
   };
 
   const placeholder = useMemo(() => toPlaceholder(value, answer), [
@@ -58,19 +40,22 @@ const AnswerBox = ({ answer, onCorrect, onIncorrect, ...props }) => {
   ]);
 
   return (
-    <input
-      {...props}
-      ref={inputRef}
-      onKeyDown={onKeyDown}
-      onBlur={() => inputRef.current.focus()}
-      value={placeholder}
-    />
+    <Form onSubmit={handleSubmit}>
+      <Input {...props} onChange={handleChange} value={value} autoFocus />
+      <FakeInput>{placeholder}</FakeInput>
+    </Form>
   );
 };
 
-export default styled(AnswerBox)`
+const Form = styled.form`
+  position: relative;
+  margin-bottom: 1em;
+`;
+
+const FakeInput = styled.span`
   font-family: courier;
   font-size: 2em;
+  padding-left: 0.2em;
   letter-spacing: 0.2em;
   border: 0;
   text-align: center;
@@ -79,3 +64,19 @@ export default styled(AnswerBox)`
   color: transparent;
   text-shadow: 0 0 0 #000;
 `;
+
+const Input = styled.input`
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  &:focus + ${FakeInput} {
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  }
+`;
+
+export default AnswerBox;
