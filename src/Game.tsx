@@ -35,9 +35,22 @@ const Results = styled(({ score, attempts, ...props }) => (
   }
 `;
 
-const shuffle = arr => [...arr].sort(() => 0.5 - Math.random());
+interface Flag {
+  emoji: string;
+  name: string;
+}
 
-const Game = props => {
+interface ArrayOfFlag extends Array<Flag> {}
+
+const shuffle = (arr: ArrayOfFlag) => [...arr].sort(() => 0.5 - Math.random());
+
+interface Game {
+  flags: Array<Flag>;
+  attempts: number;
+  cheatMode: boolean;
+}
+
+const Game = (props: Game) => {
   const [flags, setFlags] = useState(() => shuffle(props.flags));
   const [score, setScore] = useState(0);
   const [attempts, setAttempts] = useState(props.attempts);
