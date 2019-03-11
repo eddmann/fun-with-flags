@@ -37,7 +37,7 @@ const Results = styled(({ score, attempts, ...props }) => (
 
 const shuffle = arr => [...arr].sort(() => 0.5 - Math.random());
 
-export default props => {
+const Game = props => {
   const [flags, setFlags] = useState(() => shuffle(props.flags));
   const [score, setScore] = useState(0);
   const [attempts, setAttempts] = useState(props.attempts);
@@ -64,12 +64,9 @@ export default props => {
 
   const [{ emoji, name }] = flags;
 
-  useEffect(
-    () => {
-      props.cheatMode && console.log(name);
-    },
-    [name]
-  );
+  useEffect(() => {
+    props.cheatMode && console.log(name);
+  }, [name]);
 
   return (
     <CentreWrapper>
@@ -83,3 +80,5 @@ export default props => {
     </CentreWrapper>
   );
 };
+
+export default Game;
