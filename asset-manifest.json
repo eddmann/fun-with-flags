@@ -1,11 +1,11 @@
 {
-  "main.js": "/fun-with-flags/static/js/main.95c2f203.chunk.js",
-  "main.js.map": "/fun-with-flags/static/js/main.95c2f203.chunk.js.map",
+  "main.js": "/fun-with-flags/static/js/main.eb196acb.chunk.js",
+  "main.js.map": "/fun-with-flags/static/js/main.eb196acb.chunk.js.map",
   "runtime~main.js": "/fun-with-flags/static/js/runtime~main.d0c4b2de.js",
   "runtime~main.js.map": "/fun-with-flags/static/js/runtime~main.d0c4b2de.js.map",
-  "static/js/2.353a521b.chunk.js": "/fun-with-flags/static/js/2.353a521b.chunk.js",
-  "static/js/2.353a521b.chunk.js.map": "/fun-with-flags/static/js/2.353a521b.chunk.js.map",
+  "static/js/2.06f5f6b5.chunk.js": "/fun-with-flags/static/js/2.06f5f6b5.chunk.js",
+  "static/js/2.06f5f6b5.chunk.js.map": "/fun-with-flags/static/js/2.06f5f6b5.chunk.js.map",
   "index.html": "/fun-with-flags/index.html",
-  "precache-manifest.b223952a8a81ce7e9d1074a81c68d588.js": "/fun-with-flags/precache-manifest.b223952a8a81ce7e9d1074a81c68d588.js",
+  "precache-manifest.b100cac2edacf5b28aa0d61dc7b34a38.js": "/fun-with-flags/precache-manifest.b100cac2edacf5b28aa0d61dc7b34a38.js",
   "service-worker.js": "/fun-with-flags/service-worker.js"
 }
