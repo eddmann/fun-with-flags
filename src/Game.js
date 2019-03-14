@@ -64,12 +64,7 @@ export default props => {
 
   const [{ emoji, name }] = flags;
 
-  useEffect(
-    () => {
-      props.cheatMode && console.log(name);
-    },
-    [name]
-  );
+  useEffect(() => props.cheatMode && console.log(name), [name]);
 
   return (
     <CentreWrapper>
