@@ -43,7 +43,7 @@ export default props => {
   const [attempts, setAttempts] = useState(props.attempts);
 
   const nextFlag = () => {
-    setFlags(flags.length > 0 ? flags.slice(1) : shuffle(props.flags));
+    setFlags(flags.length > 1 ? flags.slice(1) : shuffle(props.flags));
     setAttempts(props.attempts);
   };
 
